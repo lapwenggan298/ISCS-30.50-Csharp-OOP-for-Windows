@@ -1,10 +1,11 @@
-#**ISCS-30.50-Csharp-OOP-for-Windows**
+# **ISCS-30.50-Csharp-OOP-for-Windows**
 
 ---
 
-![C# Logo, obtained from wikipedia.](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)#/media/File:C_Sharp_Logo_2023.svg)
+![C# Logo](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fseeklogo.com%2Fimages%2FC%2Fc-sharp-logo-B904AC0EA0-seeklogo.com.png&f=1&nofb=1&ipt=fe0f715247469f6859e97237218886b4c2bab405aba347511c2ae7c9c407e0ff "C#")
+  I couldn't link the wikipedia img properly.
 
-##What will this repo contain?
+## What will this repo contain?
 
 ---
 
