@@ -15,5 +15,5 @@
   - **Note**: What might be relevant to me, may not be relevant to you.
 - I will also be practicing my markdown/html syntax here.
 
-May this repository be useful to those who stumble upon it :heart: :heart:.
+May this repository be useful to those who stumble upon it :heart: :heart:.  
 I may also make a repository for my old school projects (Java and Python) as well as future projects or learnings I dive into.
