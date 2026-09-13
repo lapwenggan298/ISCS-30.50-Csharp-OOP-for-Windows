@@ -1,0 +1,5 @@
+*.zip
+
+#dotnet installer, VS setup
+dotnet-sdk-10.0.302-win-x64.exe
+VisualStudioSetup.exe

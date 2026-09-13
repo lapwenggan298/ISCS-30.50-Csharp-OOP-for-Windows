@@ -1,0 +1,183 @@
+August 24, 2026
+
+Basic Syntax of C#
+- endlines with a semicolon (;)
+- Blocks of code are denoted using curly brackets ({})
+- Logical conditions are in parentheses
+- "Else if" NOT "Elif"
+- Comments
+	> Single Line (//comment)
+	> Multi-line (?**/)
+- Static Typing
+
+- Example:
+private void GreetPerson(string you, string other){
+	string greeting = "Hello(0)! My name is (1)!";
+	if(other == ""){
+		//Introduce yourself!
+		Console.WriteLine("My Name is" + you)
+	}
+	else if(other == "CJ){
+	}
+	else{
+	}
+
+Access Modifiers
+- private, not inherited by anyone
+- public, can be inherited/accessed by anyone
+- protected, can be accessed by children (?)
+
+Input Methods:
+- Console.Read()
+	 > Reads the next character in the input stream (ASCII Value)
+
+- Console.ReadLine()
+	> Reads the next string of characters in the input stream
+
+- Console.ReadKey()
+	> Makes the program wait until a key is pressed.
+
+Output Methods:
+- Console.Write()
+	> Writes the inputted strings without a new line character (break).
+
+- Console.WriteLine()
+	> Writes the inputted string with a new line characcter appended to the end of the string.
+
+Misc
+- C# uses "" instead of '' when writing down strings.
+
+Data Types
+- string
+	> unicode Characters
+	> string
+- char
+	> a single unicode character
+	> char
+- short
+	> 16-bit signed integer
+	> short
+- long
+	> any number higher than int
+	> long
+-int
+	> 32-bit signed integer
+	> there are short, long, and int, for storage purposes if you want to save memory.
+	> int, safest is short-int
+- float
+	> 32-bit single-precision floating point type
+	> float = numf
+		> floaty = 3.14f
+- double
+	> 64-bit double-precision floating point type
+	> double
+	> doubly = 3.14
+- bool
+	> 8-bit logical true/false value
+
+Misc - Naming Convention(s)
+- write with camelCasing.
+
+Operators:
++ for Concatenation, += also
+
+Logical
+- && for and
+- || for or
+- ! for not
+
+Ternary
+- ?, shorthand if-else
+	> string name = preferFirst ? firstName : LastName;
+
+Formatting Options
+M = Month(1-12);
+MM = (01-12);
+MMM = (Abbr. Month);
+MMMM = (Full Month Name);
+
+Escape Character
+- \' or \" or \\, adds a single quote
+- eifei
+fefmkpof
+
+Operators
+Arithmetic
++=
+-=
+/=
+*=
+%=
+
+Relational
+==
+!=
+>=
+<=
+
+Logical
+- && for and
+- || for or
+- ! for not
+
+Increment and Decrement
+++ increments value by 1
+-- decrements value by 1 (if --x, shows decreased value of x, if x--, shows value before being decreased)
+
+Type Conversion/Parse Methods
+- string to int, int.Parse();, int.Parse("21")
+- string to float, float.Parse();, float.Parse(Console.ReadLine());
+- string to bool, bool.Parse();, bool.Parse("True");
+- number to string, num.ToString();, 19.ToString();
+
+Arrays
+- Fixed size once initialized
+- Data stored must all be the same type
+
+List
+- Size is not fixed
+- elements must all be the same type
+- listName.Add(element) to add element, listName.Pop() will give you the element at the top of the list, and remove it from the list., listName.Remove(element) will remove the element from the List, listName.Length() will return the len of the list.
+
+ArrayLists
+- Size is not fixed
+- elements can be of differing types
+- legacy feature of C#, does not come default
+- using Systems.Collections; //Library call to access; check if you can put different data types in the same List in python. Yes you can.
+
+Code
+- Switch Case
+- execute code specific to the matching case
+- break statements are required to prevent falling through to the next case
+- can have many cases
+- switch(choice){
+-	case "a":
+-		<stuff for a>
+-		break;
+-	case "b":
+-		"""
+-		"""
+-	default:
+-		<final/other stuff>
+-		break;
+
+For Loop
+- for(init; condition; increment){
+-	//Code
+- }
+Example:
+- for (int x = 0; x<5; x++){
+-	//Code
+- }
+
+Do While Loop
+- while loop, but the code in the loop is executed before the condition is checked.
+- good to have if you want the code to run at least once.
+- can use it so that it will run as long as condition is not met.
+
+Classes
+- objects with properties (variables) and specific behaviors (methods)
+- "global variables"
+- "Constructor Method"
+
+Inheritance
