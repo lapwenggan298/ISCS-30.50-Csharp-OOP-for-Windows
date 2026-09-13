@@ -2,7 +2,7 @@
 
 ---
 
-![C# Logo](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fseeklogo.com%2Fimages%2FC%2Fc-sharp-logo-B904AC0EA0-seeklogo.com.png&f=1&nofb=1&ipt=fe0f715247469f6859e97237218886b4c2bab405aba347511c2ae7c9c407e0ff "C#")
+<img alt = "C# Logo" src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fseeklogo.com%2Fimages%2FC%2Fc-sharp-logo-B904AC0EA0-seeklogo.com.png&f=1&nofb=1&ipt=fe0f715247469f6859e97237218886b4c2bab405aba347511c2ae7c9c407e0ff" width = 200>
   I couldn't link the wikipedia img properly.
 
 ## What will this repo contain?
