@@ -3,3 +3,41 @@
 #dotnet installer, VS setup
 dotnet-sdk-10.0.302-win-x64.exe
 VisualStudioSetup.exe
+
+# Build outputs/results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Ll]og/
+[Ll]ogs/
+x64/
+x86/
+*.obj
+
+# User-specific files
+.vs/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+*.env
+
+# NuGet Packages
+*.nupkg
+packages/
+!packages/build/
+
+# Click-Once directory
+publish/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+#Other files built by VS
+*.tmp
+*.log
