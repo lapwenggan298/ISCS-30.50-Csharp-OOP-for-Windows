@@ -282,10 +282,10 @@ class Program
             {
                 case "1":
                     Burger borgir = new Burger();
-                    Console.Write("Please input the number of extra patties you wish to add (50 PHP per patty): ");
+                    Console.Write("\nPlease input the number of extra patties you wish to add (50 PHP per patty): ");
                     borgir.AddPatty(int.Parse(Console.ReadLine()));
 
-                    Console.Write("Please input the number of extra cheese slices you wish to add (20 PHP per cheese slice): ");
+                    Console.Write("Please input the number of extra cheese slices you wish to add (25 PHP per cheese slice): ");
                     borgir.AddCheese(int.Parse(Console.ReadLine()));
 
                     Console.Write("Would you like to add veggies (y/n)?: ");
@@ -300,13 +300,15 @@ class Program
 
                 case "2":
                     Side sideDish = new Side();
-                    Console.WriteLine("Please choose a side dish: ");
-                    Console.WriteLine("(1) Fries (50 PHP for Regular, 75 PHP for Large)");
-                    Console.WriteLine("(2) Onion Rings (60 PHP for Regular, 90 PHP for Large)");
-                    Console.WriteLine("(3) Bacon Chips (70 PHP for Regular, 105 PHP for Large)");
+                    Console.WriteLine("\nPlease choose a side dish: ");
+                    Console.WriteLine("(1) Fries (50 PHP for Medium, 75 PHP for Large)");
+                    Console.WriteLine("(2) Onion Rings (60 PHP for Medium, 90 PHP for Large)");
+                    Console.WriteLine("(3) Bacon Chips (70 PHP for Medium, 105 PHP for Large)");
                     string sideType = Console.ReadLine();
 
-                    Console.Write("Please choose the size of your side dish: ");
+                    Console.WriteLine("Please choose the size of your side dish: ");
+                    Console.WriteLine("(1) Medium");
+                    Console.WriteLine("(2) Large");
                     string sideSize = Console.ReadLine();
 
                     sideDish.SetTypeAndSize(int.Parse(sideType), int.Parse(sideSize));
@@ -318,7 +320,7 @@ class Program
 
                 case "3":
                     Wrap wrapped = new Wrap();
-                    Console.Write("Would you like your wrap to be all meat (y/n)?: ");
+                    Console.Write("\nWould you like your wrap to be all meat (y/n)?: ");
                     wrapped.RemoveVeggies(Console.ReadLine().ToLower());
 
                     Console.Write("Please enter the number of extra cheese you would like to add (20 PHP per cheese slice): ");
@@ -336,76 +338,126 @@ class Program
                     break;
 
                 case "4":
-                    Console.WriteLine("Your Order: ");
-                    int index = 1;
-
-                    foreach (object food in foodItems)
+                    if (foodItems.Count > 0)
                     {
-                        if (food is Burger itemB)
+                        Console.WriteLine("\nYour Order: ");
+                        int index = 1;
+
+                        foreach (object food in foodItems)
                         {
-                            Console.WriteLine($"{index} {itemB.GetBurger()}");
+                            if (food is Burger itemB)
+                            {
+                                Console.WriteLine($"\n ({index}) {itemB.GetBurger()}");
+                            }
+                            else if (food is Side itemS)
+                            {
+                                Console.WriteLine($"\n ({index}) {itemS.GetSide()}");
+                            }
+                            else if (food is Wrap itemW)
+                            {
+                                Console.WriteLine($"\n ({index}) {itemW.GetWrap()}");
+                            }
+                            index++;
                         }
-                        else if (food is Side itemS)
-                        {
-                            Console.WriteLine($"{index} {itemS.GetSide()}");                        }
-                        else if (food is Wrap itemW)
-                        {
-                            Console.WriteLine($"{index} {itemW.GetWrap()}");
-                        }
-                        index++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No items in order list yet!");
                     }
 
                     break;
 
                 case "5":
-                    Console.WriteLine("Which would you like to remove: ");
-                    int indexOfToBeRemoved = 1;
-
-                    foreach (object food in foodItems)
+                    if (foodItems.Count > 0)
                     {
-                        if (food is Burger itemB)
+                        Console.WriteLine("\nWhich would you like to remove: ");
+                        int indexOfToBeRemoved = 1;
+
+                        foreach (object food in foodItems)
                         {
-                            Console.WriteLine($"{indexOfToBeRemoved} {itemB.GetBurger()}");
+                            if (food is Burger itemB)
+                            {
+                                Console.WriteLine($"\n ({indexOfToBeRemoved}) {itemB.GetBurger()}");
+                            }
+                            else if (food is Side itemS)
+                            {
+                                Console.WriteLine($"\n ({indexOfToBeRemoved}) {itemS.GetSide()}");
+                            }
+                            else if (food is Wrap itemW)
+                            {
+                                Console.WriteLine($"\n ({indexOfToBeRemoved}) {itemW.GetWrap()}");
+                            }
+                            indexOfToBeRemoved++;
                         }
-                        else if (food is Side itemS)
+
+                        int toRemove = int.Parse(Console.ReadLine());
+                        int targetIndexRemoved = toRemove - 1;
+
+                        if (targetIndexRemoved >= 0 && targetIndexRemoved < foodItems.Count)
                         {
-                            Console.WriteLine($"{indexOfToBeRemoved} {itemS.GetSide()}");
+                            object removed = foodItems[targetIndexRemoved];
+                            string itemDesc = "";
+                            switch (removed)
+                            {
+                                case Burger b:
+                                    itemDesc = b.GetBurger();
+                                    break;
+
+                                case Side s:
+                                    itemDesc = s.GetSide();
+                                    break;
+
+                                case Wrap w:
+                                    itemDesc = w.GetWrap();
+                                    break;
+                                
+                            }
+
+                            foodItems.RemoveAt(targetIndexRemoved);
+                            Console.WriteLine($"{itemDesc} removed.");
                         }
-                        else if (food is Wrap itemW)
-                        {
-                            Console.WriteLine($"{indexOfToBeRemoved} {itemW.GetWrap()}");
-                        }
-                        index++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No items in order list yet!");
                     }
 
                     break;
 
                 case "6":
-                    Console.WriteLine("Your Order: ");
-                    int total = 0;
-                    int countPos = 1;
-
-                    foreach(object food in foodItems)
+                    if (foodItems.Count > 0)
                     {
-                        if (food is Burger itemB)
-                        {
-                            Console.WriteLine($"{countPos} {itemB.GetBurger()}");
-                            total += itemB.GetBurgerCost();
-                        }
-                        else if (food is Side itemS)
-                        {
-                            Console.WriteLine($"{countPos} {itemS.GetSide()}");
-                            total += itemS.GetSideCost();
-                        }
-                        else if(food is Wrap itemW)
-                        {
-                            Console.WriteLine($"{countPos} {itemW.GetWrap()}");
-                            total += itemW.GetWrapCost();   
-                        }
-                        countPos++;
-                    }
+                        Console.WriteLine("\nYour Order: ");
+                        int total = 0;
+                        int countPos = 1;
 
-                    Console.WriteLine($"Total Price: {total} PHP");
+                        foreach (object food in foodItems)
+                        {
+                            if (food is Burger itemB)
+                            {
+                                Console.WriteLine($"\n ({countPos}) {itemB.GetBurger()}");
+                                total += itemB.GetBurgerCost();
+                            }
+                            else if (food is Side itemS)
+                            {
+                                Console.WriteLine($"\n ({countPos}) {itemS.GetSide()}");
+                                total += itemS.GetSideCost();
+                            }
+                            else if (food is Wrap itemW)
+                            {
+                                Console.WriteLine($"\n ({countPos}) {itemW.GetWrap()}");
+                                total += itemW.GetWrapCost();
+                            }
+                            countPos++;
+                        }
+
+                        Console.WriteLine($"\nTotal Price: {total} PHP");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No items in order list yet!");
+                        Console.WriteLine("Quitting application...");
+                    }
 
                     running = false;
                     break;
