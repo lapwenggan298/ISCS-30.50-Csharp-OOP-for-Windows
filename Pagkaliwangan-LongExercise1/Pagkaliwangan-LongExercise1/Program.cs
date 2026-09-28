@@ -12,33 +12,36 @@ class Burger
     {
         patties = 0;
         cheese = 0;
-        totalCost = 0;
+        totalCost = 50;
         hasVeggies = false;
     }
 
     public void AddPatty(int addedPatties)
     {
         patties += addedPatties;
+        CalculateBurgerCostTotal();
     }
 
     public void AddCheese(int addedCheese)
     {
         cheese += addedCheese;
+        CalculateBurgerCostTotal();
     }
 
     public void AddVeggies()
     {
         hasVeggies = true;
+        CalculateBurgerCostTotal();
     }
 
-    private void burgerCostTotal()
+    private void CalculateBurgerCostTotal()
     {
         totalCost = 50 + (50 * patties) + (25 * cheese);
     }
 
-    public void getBurger()
+    public void GetBurger()
     {
-        burgerCostTotal();
+        CalculateBurgerCostTotal();
 
         if (hasVeggies == true)
         {
@@ -50,8 +53,9 @@ class Burger
         }
     }
 
-    public int getBurgerCost()
+    public int GetBurgerCost()
     {
+        CalculateBurgerCostTotal();
         return totalCost;
     }
 
@@ -70,15 +74,15 @@ class Side
         cost = 0;
     }
 
-    public void setTypeAndSize(int setSide, int setSize)
+    public void SetTypeAndSize(int setSide, int setSize)
     {
         if (setSize == 1)
         {
-            size = "medium";
+            size = "Medium";
         }
         else if (setSize == 2)
         {
-            size = "large";
+            size = "Large";
         }
         else
         {
@@ -100,13 +104,14 @@ class Side
                 type = "";
                 break;
         }
+        CalculateSideCostTotal();
     }
 
-    private void sideCostTotal()
+    private void CalculateSideCostTotal()
     {
         switch (size)
         {
-            case "medium":
+            case "Medium":
                 switch (type)
                 {
                     case "fries":
@@ -122,7 +127,7 @@ class Side
                         break;
                 }
                 break;
-            case "large":
+            case "Large":
                 switch (type)
                 {
                     case "fries":
@@ -143,18 +148,15 @@ class Side
         }
     }
 
-    public void getSide()
+    public void GetSide()
     {
-        sideCostTotal();
-
-        string inputSize = size;
-        string outputSize = char.ToUpper(size[0]) + inputSize.Substring(1);
-
-        Console.WriteLine($"{outputSize} {type} added! Subtotal: {cost} PHP");
+        CalculateSideCostTotal();
+        Console.WriteLine($"{size} {type} added! Subtotal: {cost} PHP");
     }
 
-    public int getSideCost()
+    public int GetSideCost()
     {
+        CalculateSideCostTotal();
         return cost;
     }
 }
@@ -172,7 +174,7 @@ class Wrap
         allMeat = false;
         cheese = 0;
         spiceLevel = "";
-        cost = 0;
+        cost = 100;
     }
 
     public void AddCheese(int addedCheese)
@@ -180,22 +182,7 @@ class Wrap
         cheese += addedCheese;
     }
 
-    public void SetSpicyLevel(string spice)
-    {
-        spiceLevel = spice;
-    }
-
-    public void RemoveVeggies()
-    {
-        allMeat = true;
-    }
-
-    private void wrapCostTotal()
-    {
-        cost = 100 + (20 * cheese);
-    }
-
-    public void setSpice(int setSpiceLevel)
+    public void SetSpiceLevel(int setSpiceLevel)
     {
         switch (setSpiceLevel)
         {
@@ -214,9 +201,19 @@ class Wrap
         }
     }
 
-    public void getWrap()
+    public void RemoveVeggies()
     {
-        wrapCostTotal();
+        allMeat = true;
+    }
+
+    private void CalculateWrapCostTotal()
+    {
+        cost = 100 + (20 * cheese);
+    }
+
+    public void GetWrap()
+    {
+        CalculateWrapCostTotal();
         if (allMeat == true)
         {
             if (cheese == 0) {
@@ -242,8 +239,9 @@ class Wrap
         }
     }
 
-    public int getWrapCost()
+    public int GetWrapCost()
     {
+        CalculateWrapCostTotal();
         return cost;
     }
 }
