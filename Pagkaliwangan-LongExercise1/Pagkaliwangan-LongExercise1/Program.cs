@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Collections;
+using System.Diagnostics.Metrics;
 
 class Burger
 {
@@ -39,17 +40,17 @@ class Burger
         totalCost = 50 + (50 * patties) + (25 * cheese);
     }
 
-    public void GetBurger()
+    public string GetBurger()
     {
         CalculateBurgerCostTotal();
 
         if (hasVeggies == true)
         {
-            Console.WriteLine($"Burger with {patties} extra pattie/s, {cheese} extra cheese/s, and veggies added! Subtotal: {totalCost} PHP");
+            return $"Burger with {patties} extra pattie/s, {cheese} extra cheese slices added, and veggies (Subtotal: {totalCost} PHP)";
         }
         else
         {
-            Console.WriteLine($"Burger with {patties} extra pattie/s, {cheese} extra cheese/s and no veggies added! Subtotal: {totalCost} PHP");
+            return $"Burger with {patties} extra pattie/s, {cheese} extra cheese slices added, and no veggies (Subtotal: {totalCost} PHP)";
         }
     }
 
@@ -148,10 +149,10 @@ class Side
         }
     }
 
-    public void GetSide()
+    public string GetSide()
     {
         CalculateSideCostTotal();
-        Console.WriteLine($"{size} {type} added! Subtotal: {cost} PHP");
+        return $"{size} {type} (Subtotal: {cost} PHP)";
     }
 
     public int GetSideCost()
@@ -201,9 +202,21 @@ class Wrap
         }
     }
 
-    public void RemoveVeggies()
+    public void RemoveVeggies(string remove)
     {
-        allMeat = true;
+        if (remove == "y") 
+        {
+            allMeat = true;
+        }
+        else if (remove == "n")
+        {
+            allMeat = false;
+        }
+        else
+        {
+            allMeat = false;
+            Console.WriteLine($"Input received is {remove} and out of expected inputs, allMeat has been set to false by default.");
+        }
     }
 
     private void CalculateWrapCostTotal()
@@ -211,17 +224,17 @@ class Wrap
         cost = 100 + (20 * cheese);
     }
 
-    public void GetWrap()
+    public string GetWrap()
     {
         CalculateWrapCostTotal();
         if (allMeat == true)
         {
             if (cheese == 0) {
-                Console.WriteLine($"All meat {spiceLevel} wrap with no extra cheese included! Subtotal: {cost} PHP");
+                return $"All meat {spiceLevel} wrap with no extra cheese (Subtotal: {cost} PHP)";
             }
             else
             {
-                Console.WriteLine($"All meat {spiceLevel} wrap with {cheese} extra cheese/s included! Subtotal: {cost} PHP");
+                return $"All meat {spiceLevel} wrap with {cheese} extra cheese/s included (Subtotal: {cost} PHP)";
             }
         }
         else
@@ -230,11 +243,11 @@ class Wrap
             string outputSpice = char.ToUpper(inputSpice[0]) + inputSpice.Substring(1);
             if (cheese == 0)
             {
-                Console.WriteLine($"{outputSpice} wrap with no extra cheese included! Subtotal: {cost} PHP");
+                return $"{outputSpice} wrap with no extra cheese (Subtotal: {cost} PHP)";
             }
             else
             {
-                Console.WriteLine($"{outputSpice} wrap with {cheese} extra cheese/s included! Subtotal: {cost} PHP");
+                return $"{outputSpice} wrap with {cheese} extra cheese/s (Subtotal: {cost} PHP)";
             }
         }
     }
@@ -243,5 +256,164 @@ class Wrap
     {
         CalculateWrapCostTotal();
         return cost;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        ArrayList foodItems = new ArrayList();
+        
+        bool running = true;
+        while (running)
+        {
+            Console.WriteLine("\nPlease choose an option: ");
+            Console.WriteLine("(1) Burger (50 PHP)");
+            Console.WriteLine("(2) Side (Varies)");
+            Console.WriteLine("(3) Wrap (100 PHP)");
+            Console.WriteLine("(4) View items");
+            Console.WriteLine("(5) Remove an item");
+            Console.WriteLine("(6) Finish Order");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    Burger borgir = new Burger();
+                    Console.Write("Please input the number of extra patties you wish to add (50 PHP per patty): ");
+                    borgir.AddPatty(int.Parse(Console.ReadLine()));
+
+                    Console.Write("Please input the number of extra cheese slices you wish to add (20 PHP per cheese slice): ");
+                    borgir.AddCheese(int.Parse(Console.ReadLine()));
+
+                    Console.Write("Would you like to add veggies (y/n)?: ");
+                    if (Console.ReadLine().ToLower() == "y")
+                    {
+                        borgir.AddVeggies();
+                    }
+                    foodItems.Add(borgir);
+                    Console.WriteLine($"{borgir.GetBurger()} added.");
+
+                    break;
+
+                case "2":
+                    Side sideDish = new Side();
+                    Console.WriteLine("Please choose a side dish: ");
+                    Console.WriteLine("(1) Fries (50 PHP for Regular, 75 PHP for Large)");
+                    Console.WriteLine("(2) Onion Rings (60 PHP for Regular, 90 PHP for Large)");
+                    Console.WriteLine("(3) Bacon Chips (70 PHP for Regular, 105 PHP for Large)");
+                    string sideType = Console.ReadLine();
+
+                    Console.Write("Please choose the size of your side dish: ");
+                    string sideSize = Console.ReadLine();
+
+                    sideDish.SetTypeAndSize(int.Parse(sideType), int.Parse(sideSize));
+
+                    foodItems.Add(sideDish);
+                    Console.WriteLine($"{sideDish.GetSide()} added.");
+
+                    break;
+
+                case "3":
+                    Wrap wrapped = new Wrap();
+                    Console.Write("Would you like your wrap to be all meat (y/n)?: ");
+                    wrapped.RemoveVeggies(Console.ReadLine().ToLower());
+
+                    Console.Write("Please enter the number of extra cheese you would like to add (20 PHP per cheese slice): ");
+                    wrapped.AddCheese(int.Parse(Console.ReadLine()));
+
+                    Console.WriteLine("Please select a spice level: ");
+                    Console.WriteLine("(1) Mild");
+                    Console.WriteLine("(2) Spicy");
+                    Console.WriteLine("(3) Very Spicy");
+                    wrapped.SetSpiceLevel(int.Parse(Console.ReadLine()));
+
+                    foodItems.Add(wrapped);
+                    Console.WriteLine($"{wrapped.GetWrap()} added.");
+
+                    break;
+
+                case "4":
+                    Console.WriteLine("Your Order: ");
+                    int index = 1;
+
+                    foreach (object food in foodItems)
+                    {
+                        if (food is Burger itemB)
+                        {
+                            Console.WriteLine($"{index} {itemB.GetBurger()}");
+                        }
+                        else if (food is Side itemS)
+                        {
+                            Console.WriteLine($"{index} {itemS.GetSide()}");                        }
+                        else if (food is Wrap itemW)
+                        {
+                            Console.WriteLine($"{index} {itemW.GetWrap()}");
+                        }
+                        index++;
+                    }
+
+                    break;
+
+                case "5":
+                    Console.WriteLine("Which would you like to remove: ");
+                    int indexOfToBeRemoved = 1;
+
+                    foreach (object food in foodItems)
+                    {
+                        if (food is Burger itemB)
+                        {
+                            Console.WriteLine($"{indexOfToBeRemoved} {itemB.GetBurger()}");
+                        }
+                        else if (food is Side itemS)
+                        {
+                            Console.WriteLine($"{indexOfToBeRemoved} {itemS.GetSide()}");
+                        }
+                        else if (food is Wrap itemW)
+                        {
+                            Console.WriteLine($"{indexOfToBeRemoved} {itemW.GetWrap()}");
+                        }
+                        index++;
+                    }
+
+                    break;
+
+                case "6":
+                    Console.WriteLine("Your Order: ");
+                    int total = 0;
+                    int countPos = 1;
+
+                    foreach(object food in foodItems)
+                    {
+                        if (food is Burger itemB)
+                        {
+                            Console.WriteLine($"{countPos} {itemB.GetBurger()}");
+                            total += itemB.GetBurgerCost();
+                        }
+                        else if (food is Side itemS)
+                        {
+                            Console.WriteLine($"{countPos} {itemS.GetSide()}");
+                            total += itemS.GetSideCost();
+                        }
+                        else if(food is Wrap itemW)
+                        {
+                            Console.WriteLine($"{countPos} {itemW.GetWrap()}");
+                            total += itemW.GetWrapCost();   
+                        }
+                        countPos++;
+                    }
+
+                    Console.WriteLine($"Total Price: {total} PHP");
+
+                    running = false;
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid or no input, please try again.");
+                    break;
+            }
+        }
     }
 }
