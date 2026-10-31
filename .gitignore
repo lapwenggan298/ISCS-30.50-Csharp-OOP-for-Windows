@@ -5,6 +5,9 @@
 dotnet-sdk-10.0.302-win-x64.exe
 VisualStudioSetup.exe
 
+#Module2XML Lecture Program
+Module_2_XML/
+
 # Build outputs/results
 [Bb]in/
 [Oo]bj/
