@@ -25,10 +25,11 @@ I may also make a repository for my old school projects (Java and Python) as wel
     1. ***Burger, Side, Wrap (2026 - 09 - 28)***
         - More comprehensive (?) exercise where we are tasked to use classes and methods to access and modify the attributes of each instance of that class.
         - Will edit this where it will have an interface so that we just need to use one condition and syntax or method.
-    2. ***Windows Forms and XML (2026 - MM - DD)***
+    2. ***Windows Forms and XML (2026 - 11 - 01)***
         - Continuation of long exercise 1, and uses windows forms and XML.
-        - Orders from long exercise 1 will be put into XML file.
-        - XML will either be [accessed or made via] absolute or relative pathing.
+        - Orders made will be put and/or accessible via XML file.
+        - XML accessed via direct pathing to bin/exe file.
+        - Has interface implementation for easier/cleaner looping in foreach.
 
 2. **Short Exercises**
     1. ***Simple Calculator on the Console (2026 - 09 - 18)***
