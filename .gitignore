@@ -8,6 +8,9 @@ VisualStudioSetup.exe
 #Module2XML Lecture Program
 Module_2_XML/
 
+#Final output Proposal
+*.docx
+
 # Build outputs/results
 [Bb]in/
 [Oo]bj/
