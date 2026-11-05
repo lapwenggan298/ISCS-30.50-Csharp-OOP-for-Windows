@@ -43,3 +43,6 @@ I may also make a repository for my old school projects (Java and Python) as wel
 3. **Final Project**
     - Have to undergo topic/theme proposal yet that will implement all that we have learned throughout the course in this semester.
     - Will most likely have a separate repository for more comprehensive details.
+    - Proposals:
+        1. *Rock Paper Scissors*
+        2. *Wordle Game*
