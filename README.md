@@ -43,6 +43,8 @@ I may also make a repository for my old school projects (Java and Python) as wel
 3. **Final Project**
     - Have to undergo topic/theme proposal yet that will implement all that we have learned throughout the course in this semester.
     - Will most likely have a separate repository for more comprehensive details.
+    - Proposals are submitted, just waiting for my professor's reply/comment(s) for approved proposals.
     - Proposals:
-        1. *Rock Paper Scissors*
+        1. *Rock Paper Scissors Game*
         2. *Wordle Game*
+        3. *BMI Calculator*  + *Height and Weight Converters (metric to imperial, and vice versa)*
